@@ -1,73 +1,60 @@
 public class JavaZoo2 {
-
     public static void main(String[] args) {
-        
-        // Create a ZooAnimal named Chip
-        ZooAnimal ZooAnimal2 = new ZooAnimal("Chip", "brown", "monkey", 5, false);
-        
-        // Create a ZooKeeper named Mr. Jackson Rock
-        ZooKeeper ZooKeeper2 = new ZooKeeper("Mr. Jackson Rock", "No degree", 15.00);
-        
-        // Create a Cage that is covered
-        Cage Cage2 = new Cage(15, 20, 15, false, true);
-        
-        // Output the details of the created objects
-        System.out.println(ZooAnimal2);
-        System.out.println();
-        System.out.println(ZooKeeper2);
-         System.out.println();
-        System.out.println(Cage2);
+        // Create instances of ZooAnimal, Cage, and ZooKeeper
+        ZooAnimal animal = new ZooAnimal("Chip", "Monkey", 5, false);
+        Cage cage = new Cage(15, 20, 15, true, true);
+        ZooKeeper keeper = new ZooKeeper("Jackson", "Keeper", 15.0, false);
+
+        // Display actions and details
+        System.out.println("ANIMAL\n");
+        animal.eat();
+        animal.sleep();
+        System.out.println("Animal 2: " + animal + "\n");
+
+        System.out.println("CAGE\n");
+        System.out.println("Cage 2: " + cage + "\n");
+
+        System.out.println("ZOOKEEPER\n");
+        System.out.println("ZooKeeper: " + keeper);
+        keeper.feedAnimal(animal);
+        keeper.cleanCage(cage);
     }
 }
 
-// Assuming the ZooAnimal class might look like this
-class ZooAnimal {
-    String name;
-    String color;
-    String species;
-    int age;
-    boolean isHungry;
-    
-    public ZooAnimal(String name, String color, String species, int age, boolean isHungry) {
+ class ZooAnimal {
+    private String name;
+    private String type;
+    private int age;
+    private boolean isHungry;
+
+    public ZooAnimal(String name, String type, int age, boolean isHungry) {
         this.name = name;
-        this.color = color;
-        this.species = species;
+        this.type = type;
         this.age = age;
         this.isHungry = isHungry;
     }
-    
+
+    public void eat() {
+        System.out.println(name + " is eating!");
+    }
+
+    public void sleep() {
+        System.out.println(name + " is sleeping!");
+    }
+
     @Override
     public String toString() {
-        return "ZooAnimal [name=" + name + ", color=" + color + ", species=" + species + ", age=" + age + ", isHungry=" + isHungry + "]";
+        return "ZooAnimal Name :" + name + " Type :" + type + " Age : " + age + " Hungry : " + isHungry;
     }
 }
 
-// Assuming the ZooKeeper class might look like this
-class ZooKeeper {
-    String name;
-    String degree;
-    double hourlyWage;
-    
-    public ZooKeeper(String name, String degree, double hourlyWage) {
-        this.name = name;
-        this.degree = degree;
-        this.hourlyWage = hourlyWage;
-    }
-    
-    @Override
-    public String toString() {
-        return "ZooKeeper [name=" + name + ", degree=" + degree + ", hourlyWage=" + hourlyWage + "]";
-    }
-}
+ class Cage {
+    private int length;
+    private int width;
+    private int height;
+    private boolean isClean;
+    private boolean isCovered;
 
-// Assuming the Cage class might look like this
-class Cage {
-    int length;
-    int width;
-    int height;
-    boolean isClean;
-    boolean isCovered;
-    
     public Cage(int length, int width, int height, boolean isClean, boolean isCovered) {
         this.length = length;
         this.width = width;
@@ -75,9 +62,36 @@ class Cage {
         this.isClean = isClean;
         this.isCovered = isCovered;
     }
-    
+
     @Override
     public String toString() {
-        return "Cage [length=" + length + ", width=" + width + ", height=" + height + ", isClean=" + isClean + ", isCovered=" + isCovered + "]";
+        return "Cage Length : " + length + " Width : " + width + " Height : " + height + " Clean : " + isClean + " Covered : " + isCovered;
+    }
+}
+
+ class ZooKeeper {
+    private String name;
+    private String title;
+    private double playRate;
+    private boolean hasDegree;
+
+    public ZooKeeper(String name, String title, double playRate, boolean hasDegree) {
+        this.name = name;
+        this.title = title;
+        this.playRate = playRate;
+        this.hasDegree = hasDegree;
+    }
+
+    public void feedAnimal(ZooAnimal animal) {
+        System.out.println(name + " is feeding the ZooAnimal...");
+    }
+
+    public void cleanCage(Cage cage) {
+        System.out.println(name + " is cleaning the Cage...");
+    }
+
+    @Override
+    public String toString() {
+        return "ZooKeeper Name : " + name + " Title : " + title + " PlayRate : " + playRate + " Degree : " + hasDegree;
     }
 }
